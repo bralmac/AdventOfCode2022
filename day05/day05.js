@@ -511,6 +511,7 @@ move 4 from 5 to 4
 move 1 from 5 to 2
 move 8 from 4 to 9`
 
+// BDFQNDQVJ
 const arr1 = ['B', 'S', 'J', 'Z', 'V', 'D', 'G']
 const arr2 = ['P', 'V', 'G', 'M', 'S', 'Z']
 const arr3 = ['F', 'Q', 'T', 'W', 'S', 'B', 'L', 'C']
@@ -541,25 +542,28 @@ const commandList = (commands) => {
 		.match(/move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)/)
 		.slice(1)
 		.map(Number)
-	// console.log(moveX, moveFrom, moveTo)
+	// return { moveX, moveFrom, moveTo }
 
 	// .unshift from old array and .shift to new array
 	for (i = 0; i < moveX; i++) {
-		arrayValues[moveFrom].unshift(arrayValues[moveTo].shift())
+		cratesToMove = arrayValues[moveFrom].splice(0, moveX)
+		arrayValues[moveTo].unshift(...cratesToMove)
 	}
-	console.log(arrayValues)
-	// return (results = [
-	// 	arr1[0],
-	// 	arr2[0],
-	// 	arr3[0],
-	// 	arr4[0],
-	// 	arr5[0],
-	// 	arr6[0],
-	// 	arr7[0],
-	// 	arr8[0],
-	// 	arr9[0],
-	// ])
+	// console.log(arrayValues)
+	return (results = [
+		arr1[0],
+		arr2[0],
+		arr3[0],
+		arr4[0],
+		arr5[0],
+		arr6[0],
+		arr7[0],
+		arr8[0],
+		arr9[0],
+	])
 }
 
+// const stackTops = results.map((result) => result[0]).join('')
+
 const craneGame = RUNIT.map(commandList)
-console.log(craneGame)
+console.log(results)
