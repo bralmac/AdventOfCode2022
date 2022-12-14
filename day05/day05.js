@@ -533,23 +533,41 @@ const arrayValues = {
 	9: arr9,
 }
 
-const testInput = 'move 3 from 5 to 2'
-const RUNIT = testInput.split('\n')
+const testInput = `move 3 from 5 to 2`
+const RUNIT = dayInput.split('\n')
 
 // Find move command from each string
 const commandList = (commands) => {
 	const [moveX, moveFrom, moveTo] = commands
-		.match(/move\s(\d+)\sfrom\s(\d+)\sto\s(\d+)/)
+		.match(/move (\d+) from (\d+) to (\d+)/)
 		.slice(1)
 		.map(Number)
 	// return { moveX, moveFrom, moveTo }
 
 	// .unshift from old array and .shift to new array
-	for (i = 0; i < moveX; i++) {
-		cratesToMove = arrayValues[moveFrom].splice(0, moveX)
-		arrayValues[moveTo].unshift(...cratesToMove)
-	}
-	// console.log(arrayValues)
+	// for (i = 0; i < moveX; i++) {
+	// 	if (arrayValues[moveFrom].length > moveX) {
+	// 		moveY = arrayValues[moveFrom].length
+	// 		const cratesToMove = arrayValues[moveFrom].splice(0, moveY)
+	// 		arrayValues[moveTo].unshift(...cratesToMove)
+	// 	} else {
+	// 		const cratesToMove = arrayValues[moveFrom].splice(0, moveX)
+	// 		arrayValues[moveTo].unshift(...cratesToMove)
+	// 	}
+	// }
+
+	// for (i = 0; i < moveX; i++) {
+	// 	if (arrayValues[moveFrom].length > moveX) {
+	// 		moveY = arrayValues[moveFrom].length
+	// 		const cratesToMove = arrayValues[moveFrom].splice(0, moveY)
+	// 		arrayValues[moveTo].unshift(...cratesToMove)
+	// 	} else {
+	const cratesToMove = arrayValues[moveFrom].splice(0, moveX)
+	arrayValues[moveTo].unshift(...cratesToMove)
+	// 	}
+	// }
+
+	console.log(arrayValues)
 	return (results = [
 		arr1[0],
 		arr2[0],
